@@ -2,8 +2,8 @@ import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 from data_creation import import_data
 
-X_test = np.load('X_test_scaled.npy')
-y_test = np.load('y_test.npy')
+X_test = np.load('test/X_scaled.npy')
+y_test = np.load('test/y.npy')
 
 results = y_test # results = model.predict(X_test)
 
