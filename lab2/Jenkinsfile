@@ -1,9 +1,31 @@
 pipeline {
-    agent { docker { image 'python:3.13.2-alpine3.21' } }
+    agent any
     stages {
-        stage('build') {
+        stage('Installing dependecies') {
             steps {
-                sh 'python --version'
+                sh 'python3 -m venv ../venv'
+                sh '../venv/bin/activate'
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Creating dataset') {
+            steps {
+                sh 'python3 ../lab1/data_creation.py'
+            }
+        }
+        stage('Preprocessing dataset') {
+            steps {
+                sh 'python3 ../lab1/data_preprocessing.py'
+            }
+        }
+        stage('Training model') {
+            steps {
+                sh 'python3 ../lab1/model_preparation.py'
+            }
+        }
+        stage('Testing model') {
+            steps {
+                sh 'python3 ../lab1/model_testing.py | head -n 1'
             }
         }
     }
