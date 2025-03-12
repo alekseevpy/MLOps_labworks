@@ -3,29 +3,28 @@ pipeline {
     stages {
         stage('Installing dependecies') {
             steps {
-                sh 'python3 -m venv ../venv'
-                sh 'source ../venv/bin/activate'
-                sh 'pip install -r requirements.txt'
+                sh 'python3 -m venv venv'
+                sh 'venv/bin/pip install -r lab1/requirements.txt'
             }
         }
         stage('Creating dataset') {
             steps {
-                sh 'python3 ../lab1/data_creation.py'
+                sh 'venv/bin/python lab1/data_creation.py'
             }
         }
         stage('Preprocessing dataset') {
             steps {
-                sh 'python3 ../lab1/data_preprocessing.py'
+                sh 'venv/bin/python lab1/data_preprocessing.py'
             }
         }
         stage('Training model') {
             steps {
-                sh 'python3 ../lab1/model_preparation.py'
+                sh 'venv/bin/python lab1/model_preparation.py'
             }
         }
         stage('Testing model') {
             steps {
-                sh 'python3 ../lab1/model_testing.py | head -n 1'
+                sh 'venv/bin/python lab1/model_testing.py | head -n 1'
             }
         }
     }
