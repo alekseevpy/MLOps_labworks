@@ -20,8 +20,8 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train_selected)
 X_test_scaled = scaler.transform(X_test_selected)
 
-np.save("train/X_processed.npy", X_train_scaled)
-np.save("test/X_processed.npy", X_test_scaled)
+np.save("train/X_scaled.npy", X_train_scaled)
+np.save("test/X_scaled.npy", X_test_scaled)
 
 with open("scaler.pkl", "wb") as f:
     pickle.dump(scaler, f)
