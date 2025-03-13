@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Preprocessing dataset') {
             steps {
-                sh 'venv/bin/python lab1/data_preprocessing.py'
+                sh 'venv/bin/python lab2/data_preprocessing.py'
             }
         }
         stage('Training model') {
