@@ -15,7 +15,7 @@ COPY lab3/ ./
 # Устанавливаем зависимости
 RUN pip install -r requirements.txt
 
-# Запускаем pipeline
+# Запускаем pipelinedocker 
 RUN chmod +x pipeline.sh && ./pipeline.sh
 
 CMD streamlit run streamlit_app.py
