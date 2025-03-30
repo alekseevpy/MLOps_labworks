@@ -6,11 +6,8 @@ EXPOSE 8501
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Скопируем requirements.txt и установим зависимости
-COPY lab3/requirements.txt ./
-
 # Скопируем проект в рабочую директорию
-COPY lab3/ ./
+COPY . .
 
 # Устанавливаем зависимости
 RUN pip install -r requirements.txt
