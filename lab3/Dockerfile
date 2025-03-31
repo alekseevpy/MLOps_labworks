@@ -15,4 +15,4 @@ RUN pip install -r requirements.txt
 # Запускаем pipelinedocker 
 RUN chmod +x pipeline.sh && ./pipeline.sh
 
-CMD streamlit run streamlit_app.py
+CMD streamlit run streamlit_app.py --server.address 0.0.0.0 --server.port 8501 --server.enableCORS false --server.enableXsrfProtection false
