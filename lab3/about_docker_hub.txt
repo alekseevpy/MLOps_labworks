@@ -1,0 +1,1 @@
+Образ загружен в docker hub и может быть найден по названию: justadreammm/my-docker-image
