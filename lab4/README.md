@@ -20,6 +20,31 @@
 
 # Отчет
 
+### Пункт 1-3 - Настройка удаленного хранилища
+1. Была создана папка lab4 в корне проекта
+2. В корне проекта инициализировал проект в корне репозитория `dvc init`
+3. Добавил .dvc/ и конфиг файлы
+4. Настроил удалённое хранилище на Google Drive:
+    - Зарегистрировался в Google Cloud Console
+    - Создал проект
+    - Включил Google Drive API
+    - Настроил OAuth Consent Screen
+    - Создали OAuth client ID и client secret
+    - Добавил себя и сокомандников в тестировщики
+    - Добавил удаленное хранилище `dvc remote add --default myremote gdrive://1Pm5r95Rpb0lHixTEahjCI-dCrGqgJXXh`
+    - Добавил ключи авторизации:
+        * `dvc remote modify myremote gdrive_client_id <client-id>`
+        * `dvc remote modify myremote gdrive_client_secret <client-secret>`
+    - Убрал OAuth-ошибку `dvc remote modify myremote gdrive_acknowledge_abuse true`
+
+### Пункт 4 - Создание датасета
+1. Создал встроенный датасет из catboost.datasets
+2. Добавил файл в DVC:
+    - `dvc add lab4/titanic_raw.csv`
+    - `git add lab4/titanic_raw.csv.dvc .gitignore`
+    - `git commit -m "Add Titanic raw dataset"`
+    - `dvc push`
+
 ### Пункт 5 - Модификация датасета
 1. Скачал датасет командой `dvc pull -r myremote`
 2. Создал скрипт modify_dataset.py, в котором с помощью Pandas оставил нужные поля
@@ -34,6 +59,16 @@
 5. Применил скрипт командой `python -m modify_dataset`
 6. Добавил новую версию датасета локально командой `dvc add .`
 7. Сохранил новую версию командой `dvc push`
+
+### Пункт 7 - Создание нового признака
+1. Загрузил ранее сохраненный датасет
+2. Заполнил пропущенные значения
+3. Сделал One-hot encoding для признака "Sex"
+4. Сохранил обновленный датасет и обновил данные в DVC:
+    - `dvc add lab4/titanic_raw.csv`
+    - `git add lab4/titanic_raw.csv.dvc lab4/modify_dataset.py`
+    - `git commit -m "Добавлен one-hot encoding для 'Sex'`
+    - `dvc push`
 
 ### Выполнение пункта 8 - переключение между всеми созданными версиями датасета
 1. Выполнение команды "dvc pull" - скачивание из удаленного хранилища все файлы данных, указанные в конфигурации.
