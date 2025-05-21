@@ -56,7 +56,6 @@ def test_regression_on_noisy():
     model = LinearRegression().fit(dfn[["x"]], dfn["y"])
     preds = model.predict(dfn[["x"]])
     mse = mean_squared_error(dfn["y"], preds)
-    # на шумном датасете ожидаем плохое качество
     assert mse > 20, (
         "Ошибка: ожидалось высокое значение MSE на ",
         f"шумных данных, получено {mse:.2f}",
